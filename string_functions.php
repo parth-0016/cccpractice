@@ -43,6 +43,6 @@ $x = 'parth';
 
 // htmlspecialchars(string)
 // converts special or predefined characters( < and > ) into html entities
-$str = "This is some <"
+// $str = "This is some <b> bold "
 
 ?>
