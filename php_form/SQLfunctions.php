@@ -15,8 +15,8 @@ echo "UPDATE {$t} SET {$columns} WHERE {$whereCon};";
 
 function insert($t, $data){
     foreach($data as $feild => $value){
-        $columns[] = $feild;
-        $values[] = $value;
+        $columns[] = "`$feild`";
+        $values[] = "'$value'";
     }
 
     $colStr = implode(", ", $columns);
@@ -24,7 +24,7 @@ function insert($t, $data){
 
     echo "INSERT INTO {$t} ({$colStr}) VALUES ({$valStr})";
 }
-// insert('asd', ['name' => 'parth', 'fvfggb'=>'refffb']);
+insert('asd', ['name' => 'parth', 'fvfggb'=>'refffb']);
 
 function delete($t, $wh){
     foreach($wh as $feild => $value){
@@ -35,7 +35,7 @@ function delete($t, $wh){
 
     echo "DELETE FROM {$t} WHERE {$whereColSrt}";
 }
-delete('asd', ['id'=>7,'email'=>'parth@.com']);
+// delete('asd', ['id'=>7,'email'=>'parth@.com']);
 
 die;    
 ?>
