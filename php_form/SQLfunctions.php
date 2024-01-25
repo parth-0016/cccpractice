@@ -11,7 +11,7 @@ $columns = implode(", ",$columns);
 $whereCon = implode(" AND ", $whereCon);
 echo "UPDATE {$t} SET {$columns} WHERE {$whereCon};";
 }
-// update('asd', ['name'=>'Parth', 'feild'=>'value'], ['id'=>7,'email'=>'parth@.com']);
+update('asd', ['name'=>'Parth', 'feild'=>'value'], ['id'=>7,'email'=>'parth@.com']);
 
 function insert($t, $data){
     foreach($data as $feild => $value){
@@ -24,7 +24,7 @@ function insert($t, $data){
 
     echo "INSERT INTO {$t} ({$colStr}) VALUES ({$valStr})";
 }
-insert('asd', ['name' => 'parth', 'fvfggb'=>'refffb']);
+// insert('asd', ['name' => 'parth', 'fvfggb'=>'refffb']);
 
 function delete($t, $wh){
     foreach($wh as $feild => $value){
