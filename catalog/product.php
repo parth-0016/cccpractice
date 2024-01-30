@@ -7,29 +7,31 @@ echo "<br>";
 // var_dump($product_data);
 if (isset($_POST['submit'])) {
     $product_data = $_POST['group1'];
-    var_dump($product_data);
+    // var_dump($product_data);
     $inser = insert('ccc_product', $product_data);
     // $conn->query($inser);
     try{
         mysqli_query($conn, $inser);
-
     }
     catch(Exception $e){
         echo $e->getMessage();
     }
 }
 if (isset($_POST['update'])) {
-    $product_data = $_POST['product'];
-    update("ccc_product", $product_data, $product_id);
+    $product_data = $_POST['group1'];
+    // var_dump($product_data);
+    $product_id = $_GET['edit'];
+    $updVar = update("ccc_product", $product_data, ['product_id'=>$product_id]);
     $conn->query($updVar);
 }
 if (isset($_GET['edit'])) {
-    echo "hello fefreg";
+    // echo "hello fefreg";
     global $conn;
     $product_id = $_GET['edit'];
     $product = $conn->query("SELECT * FROM ccc_product WHERE product_id=$product_id")->fetch_assoc();
     print_r($product);
 }
+if(isset($_POST['delete']))
 
 ?>
 
@@ -65,7 +67,7 @@ if (isset($_GET['edit'])) {
 
         <label>Category:</label>
         <select name="group1[category]" id="category">
-            <option value="bar&game_room">Bar & Game Room</option>
+            <!-- <option value="bar&game_room">Bar & Game Room</option>
             <option value="bedroom">Bedroom</option>
             <option value="decor">Decor</option>
             <option value="dining&kitchen">Dining & Kitchen</option>
@@ -73,7 +75,16 @@ if (isset($_GET['edit'])) {
             <option value="living_room">Living Room</option>
             <option value="mattresses">Mattresses</option>
             <option value="office">Office</option>
-            <option value="outddor">Outdoor</option>
+            <option value="outddor">Outdoor</option> -->
+            <?php
+            $selectQuery = select('ccc_category', ['*']);
+            $result = mysqli_query($conn, $selectQuery);
+            if(mysqli_num_rows($result)>0){
+                while($category = mysqli_fetch_assoc($result)){
+                    echo "<option value='" . $category['name'] . "'>" . $category['name'] . "</option>";                
+                }
+            }
+            ?>
         </select><br><br>
 
         <label>Manufacturer Cost</label>
