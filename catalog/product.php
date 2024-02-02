@@ -2,21 +2,38 @@
 
 include 'sql/connection.php';
 include 'sql/functions.php';
+include 'sql/queryClasses.php';
+
+if(isset($_POST['submit'])){
+    $queryObj = new QueryString();
+    $executeObj = new QueryExecution();
+    $insertQueryStr = $queryObj->insertQueryString('ccc_product', $_POST['group1']);
+    // echo $insertQueryStr;
+    $result = $executeObj->executeQuery($conn, $insertQueryStr);
+}
 
 echo "<br>";
-// var_dump($product_data);
-if (isset($_POST['submit'])) {
-    $product_data = $_POST['group1'];
-    // var_dump($product_data);
-    $inser = insert('ccc_product', $product_data);
-    // $conn->query($inser);
-    try{
-        mysqli_query($conn, $inser);
-    }
-    catch(Exception $e){
-        echo $e->getMessage();
-    }
+
+if((isset($_GET['operation'])) && $_GET['operation']=='delete'){
+    $product_id = $_GET['id'];
+    $wh = ["product_id"=>$product_id];
+    $deleteQuery = delete('ccc_product',$wh);
+    $deleteResult = mysqli_query($conn, $deleteQuery);
+    header("Location: product_list.php");
 }
+// var_dump($product_data);
+// if (isset($_POST['submit'])) {
+//     $product_data = $_POST['group1'];
+//     // var_dump($product_data);
+//     $inser = insert('ccc_product', $product_data);
+//     // $conn->query($inser);
+//     try{
+//         mysqli_query($conn, $inser);
+//     }
+//     catch(Exception $e){
+//         echo $e->getMessage();
+//     }
+// }
 if (isset($_POST['update'])) {
     $product_data = $_POST['group1'];
     // var_dump($product_data);
@@ -31,10 +48,8 @@ if (isset($_GET['edit'])) {
     $product = $conn->query("SELECT * FROM ccc_product WHERE product_id=$product_id")->fetch_assoc();
     print_r($product);
 }
-if(isset($_POST['delete']))
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +66,8 @@ if(isset($_POST['delete']))
     <h1 style="text-align: center;">Production Form</h1>
     <form method="post" style="align-items :center; justify-content:center;">
 
-        <input type="hidden" name="record_id" id="record_id" value="<?php echo isset($record['id']) ? $record['id'] : ''; ?>">
+        <input type="hidden" name="record_id" id="record_id"
+            value="<?php echo isset($record['id']) ? $record['id'] : ''; ?>">
 
         <label>Product Name</label>
         <input type="text" name="group1[product_name]"><br><br>
@@ -112,7 +128,8 @@ if(isset($_POST['delete']))
         <input type="date" name="group1[date_updated]" id="updated_at"><br><br>
 
         <!-- <button type="submit">Submit</button> -->
-        <input type="submit" name="<?php echo (isset($_GET['edit'])) ? 'update' : 'submit'; ?>" value="<?php echo (isset($_GET['edit'])) ? 'update' : 'submit'; ?>"><br><br>
+        <input type="submit" name="<?php echo (isset($_GET['edit'])) ? 'update' : 'submit'; ?>"
+            value="<?php echo (isset($_GET['edit'])) ? 'update' : 'submit'; ?>"><br><br>
 
     </form>
 
