@@ -4,13 +4,13 @@ include 'sql/connection.php';
 include 'sql/functions.php';
 include 'sql/queryClasses.php';
 
-if(isset($_POST['submit'])){
-    $queryObj = new QueryString();
-    $executeObj = new QueryExecution();
-    $insertQueryStr = $queryObj->insertQueryString('ccc_product', $_POST['group1']);
-    // echo $insertQueryStr;
-    $result = $executeObj->executeQuery($conn, $insertQueryStr);
-}
+// if(isset($_POST['submit'])){
+//     $queryObj = new QueryString();
+//     $executeObj = new QueryExecution();
+//     $insertQueryStr = $queryObj->insertQueryString('ccc_product', $_POST['group1']);
+//     // echo $insertQueryStr;
+//     $result = $executeObj->executeQuery($conn, $insertQueryStr);
+// }
 
 echo "<br>";
 
@@ -22,18 +22,18 @@ if((isset($_GET['operation'])) && $_GET['operation']=='delete'){
     header("Location: product_list.php");
 }
 // var_dump($product_data);
-// if (isset($_POST['submit'])) {
-//     $product_data = $_POST['group1'];
-//     // var_dump($product_data);
-//     $inser = insert('ccc_product', $product_data);
-//     // $conn->query($inser);
-//     try{
-//         mysqli_query($conn, $inser);
-//     }
-//     catch(Exception $e){
-//         echo $e->getMessage();
-//     }
-// }
+if (isset($_POST['submit'])) {
+    $product_data = $_POST['group1'];
+    // var_dump($product_data);
+    $inser = insert('ccc_product', $product_data);
+    // $conn->query($inser);
+    try{
+        mysqli_query($conn, $inser);
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
 if (isset($_POST['update'])) {
     $product_data = $_POST['group1'];
     // var_dump($product_data);
