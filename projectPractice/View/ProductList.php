@@ -23,11 +23,12 @@ class View_ProductList{
                 echo '<td>' . $row['sku'] . '</td>';
                 echo '<td>' . $row['category'] . '</td>';
                 echo "<td><a href='product.php?edit={$row['product_id']}'><button>Edit</button></td>";
-                echo "<td><a href='product.php?operation=delete&id={$row['product_id']}'>Delete</td>";
+                echo "<td><a href='product.php?edit={$row['product_id']}'>Delete</td>";
                 echo '</tr>';
             }
         }
-        echo "</table>";
+        echo "</table><br>";
+        // echo "<button style='margin-left: 400px;'>insert</button>";
     }
 }
 

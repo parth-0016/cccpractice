@@ -31,6 +31,15 @@ class Model_Request {
 			);
 	}
 
+	public function getRequestUri(){	
+		$uri = $_SERVER['REQUEST_URI'];
+		$uri = str_replace("/practice/projectPractice/","",$uri);
+		// explode("/",$uri);
+		// $uri = end($uri);
+		// $uri = substr($uri, 26);
+		return $uri;
+	}
+
 	public function isPost()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,6 +48,3 @@ class Model_Request {
 		return false;
 	}
 }
-
-
-

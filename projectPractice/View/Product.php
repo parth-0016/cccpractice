@@ -6,19 +6,23 @@ class View_Product
 
     }
 
+    public function arrayToObject(){
+        
+    }
+
     public function createForm()
     {
         $form = '<form action="" method="POST">';
             $form .= "<h2>Product Form</h2>";
         	$form .= '<div>';
-	        	$form .= $this->creteTextField('group1[product_name]', "Product Name: ");
+	        	$form .= $this->createTextField('group1[product_name]', "Product Name: ");
 	        $form .= '</div>';
 	        $form .= '<div>';
-            $form .= $this->creteTextField('group1[sku]', "Sku: ");
+            $form .= $this->createTextField('group1[sku]', "Sku: ");
 	        $form .= '</div>';
         	$form .= '<div>';
-	        	$form .= $this->creteRadio('group1[Product_type]', "Product Type: ", "Simple", "simple", true);
-	        	$form .= $this->creteRadio('group1[Product_type]', " ", "Bundle", "bundle");
+	        	$form .= $this->createRadio('group1[Product_type]', "Product Type: ", "Simple", "simple", true);
+	        	$form .= $this->createRadio('group1[Product_type]', " ", "Bundle", "bundle");
                 $form .= "<br><br>";
 	        $form .= '</div>';
 	        $form .= '<div>';
@@ -34,16 +38,16 @@ class View_Product
 	        	$form .= $this->createCategory('group1[category]', "Category: ", $options, '');
 	        $form .= '</div>';
             $form .= '<div>';
-                $form .= $this->creteTextField('group1[manufacture_cost]', "Manufacture Cost: ");
+                $form .= $this->createTextField('group1[manufacture_cost]', "Manufacture Cost: ");
             $form .= '</div>';
 	        $form .= '<div>';
-            $form .= $this->creteTextField('group1[shipping_cost]', "Shipping Cost: ");
+            $form .= $this->createTextField('group1[shipping_cost]', "Shipping Cost: ");
 	        $form .= '</div>';
 	        $form .= '<div>';
-            $form .= $this->creteTextField('group1[total_cost]', "Total Cost: ");
+            $form .= $this->createTextField('group1[total_cost]', "Total Cost: ");
 	        $form .= '</div>';
 	        $form .= '<div>';
-            $form .= $this->creteTextField('group1[price]', "Price: ");
+            $form .= $this->createTextField('group1[price]', "Price: ");
 	        $form .= '</div>';
 	        $form .= '<div>';
 	        	$form .= $this->createCategory('group1[status]', "Status: ", $options=['enabled'=>"Enabled", 'disabled'=>"Disabled"],'status');
@@ -61,12 +65,12 @@ class View_Product
 		return $form;
     }
 
-    public function creteTextField($name, $title, $value = '', $id = '')
+    public function createTextField($name, $title, $value = '', $id = '')
     {
         return '<span> ' . $title . ' </span><input id="' . $id . '" type="text" name="' . $name . '" value="' . $value . '"><br><br>';
     }
     
-    public function creteRadio($name, $title, $value = '', $id = '', $selected=false)
+    public function createRadio($name, $title, $value = '', $id = '', $selected=false)
     {
         $radioButton = '<span> ' . $title . ' </span><input id="' . $id . '" type="radio" name="' . $name . '" value="' . $value . '"';
         if($selected){
@@ -93,7 +97,8 @@ class View_Product
 
     public function creteSubmitBtn($title)
     {
-        return '<input type="submit" name="submit" value="'.$title.'">';
+        $name = (isset($_GET['edit'])) ? 'update' : 'submit';
+        return '<input type="submit" name="'.$name.'" value="'.$name.'">';
     }
 
     public function toHtml()
