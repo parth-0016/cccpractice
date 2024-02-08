@@ -10,7 +10,7 @@ class Controller_Front{
         $modelReqObj = new Model_Request();
         $url = $modelReqObj->getRequestUri();
         // echo $url;
-        $ClassName = "View_".ucwords(str_replace("/","_",$url));
+        $ClassName = "View_".ucwords(str_replace("/","_",$url),"_");
         // echo $Layout;
         // if($LayoutObj)
         // $LayoutObj = new $ClassName();

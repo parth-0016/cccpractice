@@ -2,8 +2,8 @@
 
 class View_Product_List{
     public function __construct(){
-        echo "Parth<br>";
-        // $this->ShowList();
+        // echo "Parth<br>";
+        $this->ShowList();
     }
     
     public function ShowList(){
@@ -27,8 +27,7 @@ class View_Product_List{
                 $productList .= '</tr>';
             }
         }
-        $productList .= "</table><br>";
-        return $productList;
+        echo $productList;
         // echo "<button style='margin-left: 400px;'>insert</button>";
     }
 

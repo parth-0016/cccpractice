@@ -63,6 +63,22 @@ class Lib_Sql_Query_Builder extends Lib_Connection
     public function fetchData($tablename){
         $qry = $this->selectQuery($tablename);
         // echo $qry;
-        return $this->executeQuery($qry);
+        try{
+            return $this->executeQuery($qry);
+        }catch(Exception $e){
+            echo $e;
+        }
     }
+    
+    public function fetchRowData($query){
+        // echo $qry;
+        $result = mysqli_fetch_assoc($this->executeQuery($query));
+        return $result;
+    }
+    
+    // public function fetchData($tablename){
+    //     $qry = $this->selectQuery($tablename);
+    //     // echo $qry;
+    //     return ($this->executeQuery($qry));
+    // }
 }
