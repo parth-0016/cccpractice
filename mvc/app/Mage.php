@@ -2,23 +2,16 @@
 
 class Mage
 {
-
+    private static $registry = [];
+    private static $baseDir = '/Applications/XAMPP/xamppfiles/htdocs/practice/mvc';
     public static function init()
     {
-        // $coreModel = new Core_Model_Request();
-        // echo $coreModel->getRequestUri();
-        // $request = Mage::getModel("core/request");
-        $frontObj = new Core_Controller_Front();
-        // $request = $getClassName->getRequestUri();
-        // $frontController = new Core_Block_Controller_Front();
-        echo $frontObj->init();
-        // echo $getClassName;
-    }
-
-    public static function getModel($className)
-    {
-        $model = ucwords(str_replace('/', '_Model_', $className), '_');
-        return new $model;
+        $frontController = new Core_Controller_Front();
+        $frontController->init();
+        // $obj= new Core_Model_Request();
+        // $obj=Mage::getModel("core/request");   //only this is passed in get model so whole url is not replaced with model
+        // $url=$obj->getRequestUri();
+        // echo $url;
     }
 
     public static function getSingleton($className)
@@ -26,19 +19,29 @@ class Mage
 
     }
 
-    public static function register($key, $value)
+    public static function getModel($className)
     {
-
+        $className = "" . ucwords(str_replace("/", "_Model_", $className), "_");
+        return new $className();
     }
 
-    public static function registry($key)
+    public static function getBlock($className)
     {
+        $className = "" . ucwords(str_replace("/", "_Block_", $className), "_");
+        return new $className();
+    }
 
+    public static function register($key, $value)
+    {
+        self::$registry[$key] = $value;
     }
 
     public static function getBaseDir($subDir = null)
     {
-
+        if ($subDir) {
+            return self::$baseDir . '/' . $subDir;
+        }
+        return self::$baseDir;
     }
 }
 
