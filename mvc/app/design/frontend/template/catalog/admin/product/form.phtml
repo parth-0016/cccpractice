@@ -1,0 +1,65 @@
+<div class="form-box">
+    <h2>Add Product</h2>
+
+    <form action="<?php echo $this->getUrl('admin/catalog_product/save'); ?>" method="POST">
+
+        <?php $productMod = $this->getProduct(); ?>
+
+        <input type="hidden" name="product[product_id]" value="<?php echo $productMod->getProductId(); ?>">
+
+        <label for="sku">SKU:</label><br>
+        <input type="text" id="sku" name="product[sku]" value="<?php echo $productMod->getSku(); ?>"><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="product[name]" value="<?php echo $productMod->getName(); ?>"><br>
+
+        <label for="color">Color:</label><br>
+        <input type="text" id="color" name="product[color]" value="<?php echo $productMod->getColor(); ?>"><br>
+
+        <label for="size">Size:</label><br>
+        <input type="text" id="size" name="product[size]" value="<?php echo $productMod->getSize(); ?>"><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description"
+            name="product[description]"><?php echo $productMod->getDescription(); ?></textarea><br>
+
+        <label for="image_link">Image Link:</label><br>
+        <input type="text" id="image_link" name="product[image_link]"
+            value="<?php echo $productMod->getImageLink(); ?>"><br>
+
+        <label for="link">Link:</label><br>
+        <input type="text" id="link" name="product[link]" value="<?php echo $productMod->getLink(); ?>"><br>
+
+        <label for="category_id">Category ID:</label><br>
+        <input type="text" id="category_id" name="product[category_id]"
+            value="<?php echo $productMod->getCategoryId(); ?>"><br>
+
+
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" name="product[price]" value="<?php echo $productMod->getPrice(); ?>"><br>
+
+        <label for="mfr_cost">Manufacturer Cost:</label><br>
+        <input type="text" id="mfr_cost" name="product[mfr_cost]" value="<?php echo $productMod->getMfrCost(); ?>"><br>
+
+        <label for="shipping_cost">Shipping Cost:</label><br>
+        <input type="text" id="shipping_cost" name="product[shipping_cost]"
+            value="<?php echo $productMod->getShippingCost(); ?>"><br>
+
+        <label for="total_cost">Total Cost:</label><br>
+        <input type="text" id="total_cost" name="product[total_cost]"
+            value="<?php echo $productMod->getTotalCost(); ?>"><br>
+
+        <label for="margin_percentage">Margin Percentage:</label><br>
+        <input type="text" id="margin_percentage" name="product[margin_percentage]"
+            value="<?php echo $productMod->getMarginPercentage(); ?>"><br>
+
+        <label for="min_price">Min Price:</label><br>
+        <input type="text" id="min_price" name="product[min_price]"
+            value="<?php echo $productMod->getMinPrice(); ?>"><br>
+
+        <label for="status">Status:</label><br>
+        <input type="text" id="status" name="product[status]" value="<?php echo $productMod->getStatus(); ?>"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -46,11 +46,22 @@ class Core_Model_Request
             );
     }
 
+    // public function getRequestUri()
+    // {
+    //     $urii = $_SERVER['REQUEST_URI'];
+    //     $uri = str_replace('/practice/mvc/', "", $urii);
+    //     return $uri;
+    // }
     public function getRequestUri()
     {
         $urii = $_SERVER['REQUEST_URI'];
         $uri = str_replace('/practice/mvc/', "", $urii);
+        if (str_contains($uri, "?")) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+            // echo  $url."11";
+        }
         return $uri;
+
     }
 
     public function isPost()

@@ -18,6 +18,9 @@ class Core_Block_Layout extends Core_Block_Template
         $this->addChild('content', $content);
         $footer = $this->createBlock('page/footer');
         $this->addChild('footer', $footer);
+        
+        // $form = $this->createBlock('catalog/admin_product');
+        // $this->addChild('form', $form);
 
 
         $messages = $this->createBlock('core/template');

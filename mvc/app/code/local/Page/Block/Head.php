@@ -16,7 +16,7 @@ class Page_Block_Head extends Core_Block_Template
 
     public function addCss($file)
     {
-        $this->_css[] = $file;
+        $this->_css[] = 'skin/css/' . $file;
     }
 
     public function getCss()

@@ -2,7 +2,7 @@
 class Core_Model_DB_Adapter
 {
     public $config = [
-        "db" => "ccc_practice",
+        "db" => "ccc_project",
         "host" => "localhost",
         "password" => "",
         "user" => "root",
@@ -18,6 +18,7 @@ class Core_Model_DB_Adapter
                 $this->config['db']
             );
         }
+        // return $this->connect;
     }
 
     public function fetchAll($query)
@@ -49,17 +50,43 @@ class Core_Model_DB_Adapter
 
     public function insert($query)
     {
+        $this->connect();
+        $sql = mysqli_query($this->connect, $query);
+        // echo $query;
+        // print_r($sql);
+        // die;
+        if ($sql) {
+            // echo 546546456;
+            // echo "Data Update Succsessfully!";
+            return mysqli_insert_id($this->connect);
+        } else {
+            echo 1233;
+            return FALSE;
+        }
+
 
     }
 
     public function update($query)
     {
-
+        $this->connect();
+        $sql = mysqli_query($this->connect, $query);
+        if ($sql) {
+            echo "<script>alert('Data Edited Successfully')</script>";
+        } else {
+            return FALSE;
+        }
     }
 
     public function delete($query)
     {
-
+        $this->connect();
+        $sql = mysqli_query($this->connect, $query);
+        if ($sql) {
+            echo "<script>alert('Data Delete Successfully')</script>";
+        } else {
+            return FALSE;
+        }
     }
 
     public function query($query)

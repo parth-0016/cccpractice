@@ -51,9 +51,12 @@ class Core_Block_Abstract
         // $this->data = $data;
     }
 
-    public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
-    {
+    // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+    // {
+    // }
 
+    public function getUrl($path){
+        return "http://localhost/practice/mvc/".$path;
     }
 
     public function getRequest()

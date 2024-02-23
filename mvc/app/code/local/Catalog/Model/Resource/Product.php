@@ -1,33 +1,9 @@
 <?php
 
-class Catalog_Model_Resource_Product{
-    protected $_tableName="";
-    protected $_primaryKey="";
-
-    public function init($tableName, $primaryKey){
-        $this->_tableName = $tableName;
-        $this->_primaryKey = $primaryKey;
-    }
-    
-    public function load($id, $column=null){
-        // echo 1223;
-        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-        // echo $sql;
-        return $this->getAdapter()->fetchRow($sql);
-    }
-
-    public function getAdapter(){
-        return new Core_Model_DB_Adapter();
-    }
-    //above part is abstract
-    public function __construct(){
-        $this->init('ccc_product', 'product_id');
-    }
-
-    public function getPrimaryKey()
+class Catalog_Model_Resource_Product extends Core_Model_Resource_Abstract
+{
+    public function __construct()
     {
-        return $this->_primaryKey;
+        $this->init('catalog_product', 'product_id');
     }
-
-
 }

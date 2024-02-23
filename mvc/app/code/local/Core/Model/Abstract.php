@@ -27,7 +27,7 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-
+        $this->_data[$this->getResource()->getPrimaryKey()] = $id;
     }
     public function getId()
     {
@@ -81,11 +81,12 @@ class Core_Model_Abstract
     }
     public function getData($key = null)
     {
-
+        return $this->_data;
     }
     public function setData($data)
     {
-
+        $this->_data = $data;
+        return $this;
     }
     public function addData($key, $value)
     {
@@ -97,7 +98,8 @@ class Core_Model_Abstract
     }
     public function save()
     {
-
+        $this->getResource()->save($this);
+        return $this;
     }
     public function load($id, $column = null)
     {
@@ -105,9 +107,13 @@ class Core_Model_Abstract
         $this->_data = $this->getResource()->load($id, $column);
         return $this;
     }
+
     public function delete()
     {
-
+        if($this->getId()){
+            $this->getResource()->delete($this);
+        }
+        return $this;
     }
 
 }
