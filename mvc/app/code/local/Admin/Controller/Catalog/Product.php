@@ -9,10 +9,10 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     public function formAction()
     {
         $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('header.css');
-        $layout->getChild('head')
-            ->addCss('footer.css');
+        // $layout->getChild('head')
+        //     ->addCss('header.css');
+        // $layout->getChild('head')
+        //     ->addCss('footer.css');
         $layout->getChild('head')
             ->addCss('product/productForm.css');
 
@@ -48,9 +48,8 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
 
-        $productForm = $layout->createBlock('catalog/admin_product_list')
-                            ->setTemplate('catalog/admin/list.php');    
-        $child->addChild('list', $productForm);
+        $productList = $layout->createBlock('catalog/admin_product_list');    
+        $child->addChild('list', $productList);
         
         $layout->toHtml();
     }

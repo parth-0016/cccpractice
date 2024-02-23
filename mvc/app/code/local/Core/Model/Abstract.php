@@ -45,7 +45,7 @@ class Core_Model_Abstract
 
     public function getCollection()
     {
-
+        return new $this->_collectionClass;
     }
     public function getTableName()
     {
