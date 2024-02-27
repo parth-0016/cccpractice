@@ -36,7 +36,7 @@ class Core_Model_Resource_Abstract
     //     var_dump($id);
     // }
 
-    public function save(Catalog_Model_Product $product)
+    public function save(Core_Model_Abstract $product)
     {
         $data = $product->getData();
         // $id = Mage::getModel('core/request')->getParams('id');

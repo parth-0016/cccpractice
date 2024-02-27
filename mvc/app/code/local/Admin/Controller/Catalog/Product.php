@@ -34,23 +34,31 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
             ->setData($data)
             ->save();
         print_r($product);
+        $loc = Mage::getBaseUrl('admin/catalog_product/list');
+        header("Location: $loc");
     }
 
     public function deleteAction()
     {
         $id = $this->getRequest()->getParams("id");
         $product = Mage::getModel("catalog/product")
-                                ->load($id);
+            ->load($id);
         $product->delete($id);
+        $loc = Mage::getBaseUrl('admin/catalog_product/list');
+        header("Location: $loc");
     }
 
-    public function listAction(){
+    public function listAction()
+    {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
 
-        $productList = $layout->createBlock('catalog/admin_product_list');    
+        $layout->getChild('head')
+            ->addCss('product/list.css');
+
+        $productList = $layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productList);
-        
+
         $layout->toHtml();
     }
 

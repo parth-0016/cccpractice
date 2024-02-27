@@ -1,0 +1,57 @@
+<?php
+$productCollection = Mage::getModel("catalog/category")->getCollection();
+$URL = Mage::getBaseUrl("admin/catalog_category");
+?>
+
+<div class="card radius-10">
+    <div class="card-header py-3">
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-6">
+                <h2 class="mb-0">Category List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive mt-2">
+            <table id="example" class="table align-middle mb-0 table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>STATUS</th>
+                        <th>UPDATE</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                <?php foreach ($productCollection->getData() as $product): ?>
+                <tr>
+                    <td>
+                        <?php print_r($product->getCategoryId());
+                            ?>
+                    </td>
+                    <td>
+                        <?php print_r($product->getCategoryName()); ?>
+                    </td>
+                    <td>
+                        <?php print_r($product->mapStatus()); ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo $URL; ?>/category?id=<?php print_r($product->getCategoryId()); ?>"
+                            type="button" id="update" class="btn btn-edit"> Update </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $URL; ?>/delete?id=<?php print_r($product->getCategoryId()); ?>"
+                            type="button" id="delete" class="btn btn-delete"> Delete </a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="addNewButton">
+    <a href="form" class="btn btn-primary me-2">
+        Add New Category
+    </a>
+</div><br>

@@ -18,12 +18,19 @@ class Core_Model_DB_Adapter
                 $this->config['db']
             );
         }
-        // return $this->connect;
+        return $this->connect;
     }
 
     public function fetchAll($query)
     {
-
+        $row = [];
+        // echo $query;
+        // var_dump($this->connect);
+        $result = $this->connect()->query($query);
+        while ($_row = mysqli_fetch_assoc($result)) {
+            $row[] = $_row;
+        }
+        return $row;
     }
 
     public function fetchPairs($query)
@@ -72,8 +79,9 @@ class Core_Model_DB_Adapter
         $this->connect();
         $sql = mysqli_query($this->connect, $query);
         if ($sql) {
-            echo "<script>alert('Data Edited Successfully')</script>";
+            return mysqli_insert_id($this->connect);
         } else {
+            echo 1233;
             return FALSE;
         }
     }
@@ -83,8 +91,9 @@ class Core_Model_DB_Adapter
         $this->connect();
         $sql = mysqli_query($this->connect, $query);
         if ($sql) {
-            echo "<script>alert('Data Delete Successfully')</script>";
+            return mysqli_insert_id($this->connect);
         } else {
+            echo 1233;
             return FALSE;
         }
     }

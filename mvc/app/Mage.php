@@ -44,11 +44,11 @@ class Mage
         }
         return self::$baseDir;
     }
-    
+
     public static function getBaseUrl($subUrl = null)
     {
         if ($subUrl) {
-            return self::$baseUrl . '/' . $subUrl;
+            return self::$baseUrl . $subUrl;
         }
         return self::$baseUrl;
     }

@@ -7,6 +7,7 @@ class Core_Model_Abstract
     protected $_collectionClass = '';
     protected $_resource = null;
     protected $_collection = null;
+    protected $_modelClass = null;
     public function __construct()
     {
         $this->init();
@@ -43,9 +44,18 @@ class Core_Model_Abstract
         // return $this;
     }
 
+    // public function getCollection()
+    // {
+    //     return new $this->_collectionClass;
+    // }
+
     public function getCollection()
     {
-        return new $this->_collectionClass;
+        $collection = new $this->_collectionClass();
+        $collection->setResource($this->getResource());
+        // $collection->setModelClass();
+        $collection->select();
+        return $collection;
     }
     public function getTableName()
     {

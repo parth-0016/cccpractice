@@ -1,4 +1,77 @@
-<?php 
-    $productCollection = Mage::getModel('catalog/product')->getCollection();
-    echo get_class($productCollection);
+<?php
+$productCollection = Mage::getModel('catalog/product')->getCollection();
+// echo get_class($productCollection);
 ?>
+
+<div class="card radius-10">
+    <div class="card-header py-3">
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-6">
+                <h2 class="mb-0">Product List</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive mt-2">
+            <table id="example" class="table align-middle mb-0 table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Color</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($productCollection->getData() as $product): ?>
+                    <tr>
+                        <td>
+                            <?php echo $product->getId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->getName(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->getSku(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->getColor(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->getCategoryId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->getPrice(); ?>
+                        </td>
+                        <td>
+                            <?php echo $product->mapStatus(); ?>
+                        </td>
+                        <td class="text-center">
+                            <a href="<?php echo Mage::getBaseUrl("admin/catalog_product/form?id=" . $product->getProductId()); ?>"
+                                class="btn btn-edit" title="Edit info">Edit</a>
+                        </td>
+                        <td class="text-center">
+                            <a href="<?php echo Mage::getBaseUrl("admin/catalog_product/delete?id=" . $product->getProductId()); ?>"
+                                class="btn btn-delete" title="Delete">Delete
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="addNewButton">
+    <a href="form" class="btn btn-primary me-2">
+        Add New Product
+    </a>
+</div><br>
