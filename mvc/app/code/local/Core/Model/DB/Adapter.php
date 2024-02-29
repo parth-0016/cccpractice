@@ -47,7 +47,7 @@ class Core_Model_DB_Adapter
     {
         $row = [];
         $this->connect();
-        // var_dump($this->connect);
+        // var_dump($query);
         $result = mysqli_query($this->connect, $query);
         while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;

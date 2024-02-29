@@ -9,11 +9,8 @@ class Customer_Block_Account_Dashboard extends Core_Block_Template
 
     public function getCustomer()
     {
-        $productModel = Mage::getModel('customer/account');
-        $id = $this->getRequest()->getParams('id');
-        if ($id != '')
-            $productModel->load($id);
-
-        return $productModel;
+        $customerId = Mage::getSingleton("core/session")->get('logged_in_customer_id');
+        $customerData = Mage::getModel('customer/account')->load($customerId);
+        return $customerData;
     }
 }

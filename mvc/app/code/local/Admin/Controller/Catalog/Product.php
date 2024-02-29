@@ -1,6 +1,6 @@
 <?php
 
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
     // public function __construct(){
     //     $form = $this->createBlock('catalog/admin_product');

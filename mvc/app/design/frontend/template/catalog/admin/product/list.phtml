@@ -1,5 +1,5 @@
 <?php
-$productCollection = Mage::getModel('catalog/product')->getCollection();
+$productCollection = $this->getProduct();
 // echo get_class($productCollection);
 ?>
 
@@ -44,7 +44,7 @@ $productCollection = Mage::getModel('catalog/product')->getCollection();
                             <?php echo $product->getColor(); ?>
                         </td>
                         <td>
-                            <?php echo $product->getCategoryId(); ?>
+                            <?php echo $this->getCategoryNameById($product->getCategoryId()) ?>
                         </td>
                         <td>
                             <?php echo $product->getPrice(); ?>

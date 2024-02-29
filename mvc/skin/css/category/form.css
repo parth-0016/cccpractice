@@ -47,3 +47,26 @@
 .form-box input[type="submit"]:hover {
   background-color: #454545;
 }
+
+select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for the selected option */
+select option:checked {
+    background-color: #007bff;
+    color: white;
+}

@@ -16,4 +16,13 @@ class Catalog_Block_Admin_Product_Form extends Core_Block_Template
 
         return $productModel;
     }
+
+    public function getCategory()
+    {
+        $categoryModel = Mage::getModel('catalog/category')->getCollection();
+        // $id = $this->getRequest()->getParams('category_id');
+        // if ($id != '')
+        //     $categoryModel->load($id);s
+        return $categoryModel;
+    }    
 }

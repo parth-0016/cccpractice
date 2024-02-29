@@ -54,3 +54,17 @@ body.card-body {
 .card input[type="submit"]:hover {
   background-color: #454545;
 }
+
+.form-links {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-links a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}

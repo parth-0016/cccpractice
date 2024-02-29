@@ -6,9 +6,14 @@ class Core_Controller_Front_Action
 
     public function __construct()
     {
+        $this->init();
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('header.css');
         $layout->getChild('head')->addCss('footer.css');
+    }
+
+    public function init(){
+        return $this;
     }
 
     public function getLayout()
@@ -25,4 +30,10 @@ class Core_Controller_Front_Action
     {
         return Mage::getModel('core/request');
     }
+
+    public function setRedirect($url)
+    {
+        return header("Location: " . Mage::getBaseUrl($url));
+    }
+
 }

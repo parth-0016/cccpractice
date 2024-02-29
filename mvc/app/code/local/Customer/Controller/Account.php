@@ -1,11 +1,23 @@
 <?php
-
+// echo "<pre>";
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
     // public function __construct(){
     //     $form = $this->createBlock('catalog/admin_product');
     //     $this->addChild('form', $form);
     // }
+    protected $_allowedAction = ['register', 'login'];
+
+    public function init()
+    {
+        $action = $this->getRequest()->getActionName();
+        if (
+            !in_array($action, $this->_allowedAction) &&
+            !Mage::getSingleton('core/session')->get('logged_in_customer_id')
+        ) {
+            $this->setRedirect('customer/account/login');
+        }
+    }
     public function loginAction()
     {
         $layout = $this->getLayout();
@@ -15,10 +27,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $child = $layout->getChild('content');
 
         $loginForm = $layout->createBlock('customer/account_login');
-        $child->addChild('form', $loginForm);
+        $child->addChild('loing', $loginForm);
         $layout->toHtml();
-
     }
+
     public function registerAction()
     {
         $layout = $this->getLayout();
@@ -28,20 +40,56 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $child = $layout->getChild('content');
 
         $registerForm = $layout->createBlock('customer/account_register');
-        $child->addChild('form', $registerForm);
+        $child->addChild('register', $registerForm);
         $layout->toHtml();
 
+    }
+
+    public function loginPostAction()
+    {
+        $data = $this->getRequest()->getParams('customer');
+
+        $email = $data['customer_email'];
+        $password = $data['password'];
+        // echo 121212;
+        // var_dump($email);
+        // var_dump($password);
+
+        $customerCollection = Mage::getModel('customer/account')->getCollection()
+            ->addFieldToFilter('customer_email', $email)
+            ->addFieldToFilter('password', $password);
+
+        $count = 0;
+        $customerId = 0;
+        // echo 1234;
+        foreach ($customerCollection->getData() as $customer) {
+            $count++;
+            $customerId = $customer->getId();
+            // echo 33433;
+            // echo "<br>";
+            print_r($customerId);
+        }
+
+        if ($count == 1) {
+            echo "success";
+            Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
+            // echo $customerId;
+            $this->setRedirect('customer/account/dashboard');
+        } else {
+
+            echo "You are not allowed to view this page.";
+        }
     }
     public function forgotAction()
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('product/productForm.css');
+            ->addCss('customer/forgot.css');
 
         $child = $layout->getChild('content');
 
         $forgotForm = $layout->createBlock('customer/account_forgot');
-        $child->addChild('form', $forgotForm);
+        $child->addChild('forgot', $forgotForm);
         $layout->toHtml();
 
     }
@@ -49,12 +97,12 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('product/productForm.css');
+            ->addCss('customer/dashboard.css');
 
         $child = $layout->getChild('content');
 
         $dashboardForm = $layout->createBlock('customer/account_dashboard');
-        $child->addChild('form', $dashboardForm);
+        $child->addChild('dashboard', $dashboardForm);
         $layout->toHtml();
 
     }
@@ -83,19 +131,4 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         // $loc = Mage::getBaseUrl('admin/catalog_product/list');
         // header("Location: $loc");
     }
-
-    public function listAction()
-    {
-        $layout = $this->getLayout();
-        $child = $layout->getChild('content');
-
-        $layout->getChild('head')
-            ->addCss('product/list.css');
-
-        $productList = $layout->createBlock('catalog/admin_product_list');
-        $child->addChild('list', $productList);
-
-        $layout->toHtml();
-    }
-
 }

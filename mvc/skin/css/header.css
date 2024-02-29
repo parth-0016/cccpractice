@@ -32,8 +32,8 @@ header {
 .header-text {
   font-size: 24px;
   margin-right: auto;
-  text-decoration: none;
   color: white;
+  text-decoration: none;
 }
 
 nav {
@@ -79,4 +79,4 @@ nav a::before {
 
 nav a:hover::before {
   transform: scaleX(1); /* Show underline on hover */
-} 
+}

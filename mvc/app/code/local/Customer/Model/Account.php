@@ -6,7 +6,7 @@ class Customer_Model_Account extends Core_Model_Abstract
     {
         $this->_resourceClass = 'Customer_Model_Resource_Account';
         $this->_collectionClass = 'Customer_Model_Resource_Collection_Account';
-        $this->_modelClass = '';
+        $this->_modelClass = 'customer/account';
     }
 
     public function mapStatus()

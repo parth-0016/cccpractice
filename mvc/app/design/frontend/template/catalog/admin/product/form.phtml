@@ -5,6 +5,7 @@
         <form action="<?php echo $this->getUrl('admin/catalog_product/save'); ?>" method="POST">
 
             <?php $productMod = $this->getProduct(); ?>
+            <?php $categories = $this->getCategory();?>
 
             <input type="hidden" name="product[product_id]" value="<?php echo $productMod->getProductId(); ?>">
 
@@ -31,9 +32,18 @@
             <label for="link">Link:</label><br>
             <input type="text" id="link" name="product[link]" value="<?php echo $productMod->getLink(); ?>"><br>
 
-            <label for="category_id">Category ID:</label><br>
-            <input type="text" id="category_id" name="product[category_id]"
-                value="<?php echo $productMod->getCategoryId(); ?>"><br>
+            <label for="category_id">Category:</label>
+            <select id="category_id" name="product[category_id]">
+                <option value="">-----select-----</option>
+                <?php
+                foreach ($categories->getData() as $category) {
+                    $categoryId = $category->getCategoryId();
+                    $categoryName = $category->getCategoryName();
+                    $selected = isset($productMod) && $productMod->getCategoryId() == $categoryId ? 'selected' : '';
+                    echo "<option value=\"$categoryId\" $selected>$categoryName</option>";
+                }
+                ?>
+            </select><br><br>
 
 
             <label for="price">Price:</label><br>
