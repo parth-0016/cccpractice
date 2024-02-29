@@ -1,0 +1,56 @@
+/* .card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+} */
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 0 auto; /* Center the card horizontally */
+  margin-top: 50px;
+}
+
+body.card-body {
+  margin: 0; /* Reset body margin */
+  font-family: Arial, sans-serif; /* Reset font family */
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card input[type="email"],
+.card input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.card input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #909090;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card input[type="submit"]:hover {
+  background-color: #454545;
+}
