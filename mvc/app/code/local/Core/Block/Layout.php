@@ -22,6 +22,11 @@ class Core_Block_Layout extends Core_Block_Template
         // $form = $this->createBlock('catalog/admin_product');
         // $this->addChild('form', $form);
 
+        $adminHeader = $this->createBlock('admin/header');
+        $this->addChild('adminHeader', $adminHeader);
+        $adminFooter = $this->createBlock('admin/footer');
+        $this->addChild('adminFooter', $adminFooter);
+
 
         $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages.phtml');

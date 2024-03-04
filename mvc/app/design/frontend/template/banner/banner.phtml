@@ -1,1 +1,14 @@
-banner.phtml
+<?php
+$bannerCollection = $this->getBannerList();
+$currentBan = null;
+// echo '<pre>';
+// print_r($bannerCollection->getData());
+// die;
+foreach ($bannerCollection->getData() as $banner) {
+    $currentBan = $banner->getBannerImage();
+}
+$bannerCollection->addFieldToFilter('status', 1);
+?>
+
+<img class="bannerHome" src="<?php echo Mage::getBaseUrl('media/banner/') . $currentBan; ?>"
+    alt="<?php echo $banner->getBannerImage(); ?>">

@@ -1,0 +1,15 @@
+<div class="card">
+    <h2>Admin Register</h2>
+    <form action="<?php echo Mage::getBaseUrl('admin/user/save'); ?>" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="admin[admin_email]" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="admin[password]" required>
+        <input type="submit" value="Register">
+        <div class="form-links">
+            <a href="<?php echo Mage::getBaseUrl('admin/user/login'); ?>">
+                Login
+            </a>
+        </div>
+    </form>
+</div>

@@ -53,7 +53,7 @@ class Core_Model_Abstract
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
-        $collection->setModel($this->_modelClass);
+        $collection->setModelClass($this->_modelClass);
         $collection->select();
         return $collection;
     }

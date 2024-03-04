@@ -4,7 +4,7 @@ class Core_Model_Resource_Collection_Abstract
 {
     protected $_resource = null;
 
-    protected $_modelClass = null;
+    protected $_model = null;
     protected $_select = [];
     protected $_data = [];
     // public function __construct()
@@ -16,11 +16,11 @@ class Core_Model_Resource_Collection_Abstract
         $this->_resource = $resource;
         return $this;
     }
-    public function setModel($model)
+    public function setModelClass($model)
     {
-        $this->_modelClass = $model;
+        $this->_model = $model;
     }
-    
+
     public function select()
     {
         $this->_select['FROM'] = $this->_resource->getTableName();
@@ -67,8 +67,10 @@ class Core_Model_Resource_Collection_Abstract
         }
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
+        // var_dump($result);
+        // echo $this->_model;
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
+            $this->_data[] = Mage::getModel($this->_model)->setData($row);
         }
     }
     public function getData()

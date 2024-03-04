@@ -1,0 +1,43 @@
+<div class="content">
+    <div class="form" style="border:1px solid black; width:30vw; padding: 15px">
+        <h2>Banner Add</h2>
+        <form method="POST" action="<?php echo $this->getUrl('admin/banner/save'); ?>" enctype="multipart/form-data">
+
+            <?php $bannerMod = $this->getBanner(); ?>
+
+            <div class="row">
+                <input type="hidden" name="banner[banner_id]" value="<?php echo $bannerMod->getBannerId(); ?>">
+            </div>
+
+            <?php if ($bannerMod->getBannerId() !== ''): ?>
+            <label for="currentImage">Current Image:</label>
+            <img src="<?php echo Mage::getBaseUrl('media/banner/' . $bannerMod->getBannerImage()) ?>"
+                alt="Current Image" class="imgEditForm">
+            <?php endif; ?>
+
+            <label for="photoname">Banner Photo:</label>
+            <input type="file" name="banner[banner_image]" required>
+
+            <div class="row">
+                <label for="status">Status : </label>
+                <select id="status" name="banner[status]" class="select-box">
+                    <option value="1" <?php echo $bannerMod->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
+                    <option value="0" <?php echo $bannerMod->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="show_on">Show On:</label>
+                <select id="show_on" name="banner[show_on]">
+                    <option value="HomePage">Homepage</option>
+                    <option value="CartPage">Cart Page</option>
+                    <option value="CheckoutPage">Checkout Page</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>

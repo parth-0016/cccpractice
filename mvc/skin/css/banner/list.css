@@ -1,0 +1,141 @@
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px 20px 0px 20px;
+  margin: 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+/* Add some styling to the buttons */
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-warning {
+  background-color: #909090;
+  color: #212529;
+}
+
+.btn-danger {
+  background-color: #909090;
+  color: #fff;
+}
+
+/* Hover effect */
+.btn:hover {
+  background-color: #454545; /* Adjust the color for the hover effect */
+  color: #1a1a1a; /* Adjust the text color for the hover effect */
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #4b9cdb;
+  border-color: #4b9cdb;
+}
+
+.btn-primary:hover {
+  background-color: #2a73b7;
+  border-color: #2a73b7;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+  align-content: center;
+  text-align: center;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table img {
+  max-width: 100px; /* Set the maximum width of the image */
+  max-height: 100px; /* Set the maximum height of the image */
+  display: block; /* Ensure the image is displayed as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.addNewButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  /* padding-bottom: 80px; */
+}
+
+.addNewButton a {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #454545; /* Button border color */
+  border-radius: 4px;
+  background-color: #909090; /* Button background color */
+  color: #fff; /* Button text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.addNewButton a:hover {
+  background-color: #454545; /* Adjust the color for the hover effect */
+  color: #fff; /* Adjust the text color for the hover effect */
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}

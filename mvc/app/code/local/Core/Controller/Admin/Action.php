@@ -6,15 +6,15 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
 
     public function __construct()
     {
-        $this->init();
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('header.css');
         $layout->getChild('head')->addCss('footer.css');
+        $this->init();
     }
 
     public function init()
     {
-        // $this->getLayout()->setTemplate("core/admin.phtml");
+        $this->getLayout()->setTemplate("core/admin.phtml");
         $action = $this->getRequest()->getActionName();
 
         if (

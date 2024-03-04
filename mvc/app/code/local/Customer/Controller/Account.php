@@ -6,7 +6,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     //     $form = $this->createBlock('catalog/admin_product');
     //     $this->addChild('form', $form);
     // }
-    protected $_allowedAction = ['register', 'login'];
+    protected $_allowedAction = ['register', 'login', 'forgot'];
 
     public function init()
     {

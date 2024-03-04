@@ -1,0 +1,52 @@
+<?php $productData = $this->getProductData();?>
+
+<div class="product-container">
+    <div class="product-images">
+        <img src="<?php echo Mage::getBaseUrl('media/product/' . $productData->getImageLink()) ?>" alt="Product Image 1"
+            class="product-image">
+        <!-- Add more images as needed -->
+    </div>
+
+    <div class="product-details">
+        <h1 class="product-name">
+            <?php echo $productData->getName() ?>
+        </h1>
+        <p class="product-price">
+            <?php echo $productData->getPrice() ?>
+        </p>
+        <p class="product-description">
+            <?php echo $productData->getDescription() ?>
+        </p>
+
+        <div class="product-quantity">
+            <label for="quantity" class="quantity-label">Quantity:</label>
+
+            <div class="quantity-controls">
+                <button class="quantity-btn" onclick="decrementQuantity()">-</button>
+                <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1">
+                <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+            </div>
+        </div>
+
+        <a href="javascript:void(0);" onclick="addToCart()" class="add-to-cart-btn">Add to Cart</a>
+        <!-- <a href="<?php echo Mage::getBaseUrl('sales/quote/add?id=' . $productData->getId() . '&qty=') ?>" class="add-to-cart-btn">Add to Cart</a> -->
+    </div>
+
+    <script>
+    function incrementQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        quantityInput.stepUp();
+    }
+
+    function decrementQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        quantityInput.stepDown();
+    }
+
+    function addToCart() {
+        var quantity = document.getElementById('quantity').value;
+        var addToCartLink = "<?php echo Mage::getBaseUrl('sales/quote/add?id=' . $productData->getId() . '&qty=') ?>";
+        addToCartLink += quantity;
+        window.location.href = addToCartLink;
+    }
+    </script>
