@@ -70,8 +70,6 @@ class Core_Model_DB_Adapter
             echo 1233;
             return FALSE;
         }
-
-
     }
 
     public function update($query)

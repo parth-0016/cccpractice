@@ -1,0 +1,39 @@
+<?php $cal = $this->getCal(); ?>
+<div>
+    <form action="<?php echo $this->getUrl('calculator/calculator/save'); ?>">
+        <!-- <div class=" row">
+            <input type="hidden" name="calc[id]" value="<?php //echo $cal->getId()  ?>">
+        </div> -->
+        <div class="row">
+            <label>User Name</label>
+            <input type="text" name="calc[user_name]" id="name" value="<?php echo $cal->getUserName() ?> ">
+        </div><br>
+        <div class="row">
+            <label>Value 1</label>
+            <input type="text" name="calc[from]" id="name" value="<?php echo $cal->getFrom() ?> ">
+        </div><br>
+        <div class="row">
+            <label for="status">Operator</label>
+            <select id="status" name="calc[operator]" class="select-box">
+                <option value="+" <?php echo $cal->getOperator() == 1 ? 'selected' : '' ?>>+</option>
+                <option value="*" <?php echo $cal->getOperator() == 0 ? 'selected' : '' ?>>-</option>
+                <option value="/" <?php echo $cal->getOperator() == 0 ? 'selected' : '' ?>>*</option>
+                <option value="-" <?php echo $cal->getOperator() == 0 ? 'selected' : '' ?>>/</option>
+                <option value="%" <?php echo $cal->getOperator() == 0 ? 'selected' : '' ?>>%</option>
+            </select>
+        </div><br><br>
+        <div class="row">
+            <label>Value 2</label>
+            <input type="text" name="calc[to]" id="name" value="<?php echo $cal->getTo() ?> ">
+        </div><br>
+
+        <div class="row">
+            <button>=</button>
+        </div>
+    </form>
+</div>
+
+
+<div>
+
+</div>

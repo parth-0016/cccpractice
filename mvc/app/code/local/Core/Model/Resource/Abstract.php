@@ -13,28 +13,9 @@ class Core_Model_Resource_Abstract
 
     public function load($id, $column = null)
     {
-        // echo 1223;
-        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-        // echo $sql;
+        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}= '{$id}' LIMIT 1";
         return $this->getAdapter()->fetchRow($sql);
     }
-
-    // public function save(Catalog_Model_Product $product)
-    // {
-    //     $data = $product->getData();
-
-
-    //     if (isset($data[$this->getPrimaryKey()])) {
-    //         unset($data[$this->getPrimaryKey()]);
-    //     }
-    //     // echo 3535;
-    //     // print_r($data);
-
-    //     $sql = $this->insertSql($this->getTableName(), $data);
-    //     $id = $this->getAdapter()->insert($sql);
-    //     $product->setId($id);
-    //     var_dump($id);
-    // }
 
     public function save(Core_Model_Abstract $product)
     {

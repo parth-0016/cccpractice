@@ -100,17 +100,36 @@ class Core_Model_Abstract
     }
     public function addData($key, $value)
     {
-
+        $this->_data[$key] = $value;
+        return $this;
     }
     public function removeData($key = null)
     {
 
     }
+
+    protected function _beforeSave()
+    {
+
+    }
+    protected function _afterSave()
+    {
+
+    }
     public function save()
     {
-        $this->getResource()->save($this);
+        $this->_beforeSave();
+        $this->getResource()->save($this); //getResource resource no object apse
+        $this->_afterSave();
         return $this;
     }
+    
+    // public function save()
+    // {
+    //     $this->getResource()->save($this);
+    //     return $this;
+    // }
+    
     public function load($id, $column = null)
     {
         // print_r($this->getResource());
