@@ -5,16 +5,13 @@ class Core_Model_Session
     public function __construct()
     {
         // if(is_null($_SESSION)){
-        // if (is_null($_SESSION) || !isset($_SESSION)) {
+        if (!isset($_SESSION)) {
         session_start();
-        // }
+        }
     }
     public function getId()
     {
-        if (!is_null($_SESSION)) {
-            return session_id();
-        }
-        return false;
+        return session_id();
     }
     public function get($key)
     {

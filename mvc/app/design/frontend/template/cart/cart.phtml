@@ -50,6 +50,8 @@ $totalQty = 0;
         <p>Total Price: $<span id="total-price">
                 <?php echo $this->getQuoteData($quoteId->getQuoteId())->getGrandTotal(); ?>
             </span></p>
-        <button class="checkout-btn">Checkout</button>
+        <form action="<?php echo Mage::getBaseUrl('cart/checkout/checkout') ?>" method="post">
+            <button class="checkout-btn">Checkout</button>
+        </form>
     </div>
 </div>

@@ -15,7 +15,7 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
         $child = $layout->getChild('content');
 
         $categoryForm = $layout->createBlock('catalog/admin_category_form');
-        $child->addChild('category', $categoryForm);
+        $child->addChild('category', $categoryForm)->addChild('category/form.css');
         $layout->toHtml();
     }
 

@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Result List</h2>
+    <table id="resultTable" class="display">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Input 1</th>
+                <th>Operator</th>
+                <th>Input 2</th>
+                <th>Result</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->getCal()->getData() as $result): ?>
+                <tr>
+                    <td>
+                        <?php echo $result->getId(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getUserName(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getFrom(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getOperator(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getTo(); ?>
+                    </td>
+                    <td>
+                        <?php echo $result->getResult(); ?>
+                    </td>
+
+
+                    <!-- <td class="text-center">
+                    <a href="http://localhost/practice/mvc/calculator/calculator/form">edit</a>
+                </td>
+                <td class="text-center">
+                    <a href="">delete</a>
+                </td> -->
+                    <td class="text-center">
+                        <a onclick="window.location.href='form?id=<?php echo $result->getId(); ?>'" class="text-warning"
+                            data-bs-original-title="Edit info" aria-label="Edit">edit
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a onclick="window.location.href='delete?id=<?php echo $result->getId(); ?>'" class="text-danger"
+                            data-bs-original-title="Delete" aria-label="Delete">delete
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

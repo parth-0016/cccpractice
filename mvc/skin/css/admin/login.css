@@ -1,0 +1,60 @@
+.card {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  color: #333; /* Text color */
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card label {
+  font-weight: bold;
+  display: block; /* Makes sure the label is on a new line */
+  margin: 10px 0 5px 0; /* Adds some space around the label */
+}
+
+.card input[type="email"],
+.card input[type="password"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  display: block; /* Ensure inputs are block level to fill container width */
+}
+
+.card input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #999999;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.card input[type="submit"]:hover {
+  background-color: #454545;
+}
+
+.card .form-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card .form-links a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.card .form-links a:hover {
+  text-decoration: underline;
+}

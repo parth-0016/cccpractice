@@ -1,0 +1,19 @@
+<?php $cal = $this->getCal(); ?>
+<?php foreach ($cal->getData() as $data): ?>
+<tr>
+    <td>
+        <?php print_r($data->getFrom()); ?>
+    </td>
+    <td>
+        <?php print_r($data->getOperators($data->getOperator())); ?>
+    </td>
+    <td>
+        <?php print_r($data->getTo()); ?>
+    </td>
+    =
+    <td>
+        <?php print_r($data->getResult()); ?>
+    </td>
+    <br><br>
+</tr>
+<?php endforeach; ?>

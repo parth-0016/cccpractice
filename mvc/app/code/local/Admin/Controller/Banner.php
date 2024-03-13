@@ -6,10 +6,8 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action
     public function formAction()
     {
         $layout = $this->getLayout();
-
-        $layout->getChild('head')->addCss('banner/form.css');
-        // $layout->getChild('head')->addCss('header.css'); //added from construct of admin front
-        // $layout->getChild('head')->addCss('footer.css');
+        $layout->getChild('head')
+            ->addCss('header.css');
 
         $child = $layout->getChild('content');
         $bannerForm = $layout->createBlock('banner/admin_form');
@@ -31,7 +29,6 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action
         $loc = Mage::getBaseUrl('admin/banner/list');
         header("Location: $loc");
         // print_r($_FILES);
-
     }
 
     public function deleteAction()
@@ -43,15 +40,6 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action
         header("Location: $loc");
     }
 
-    // public function listAction()
-    // {
-    //     $layout = $this->getLayout();
-    //     $child = $layout->getChild("content");
-    //     $productList = $layout->createBlock("catalog/admin_product_list")
-    //                     ->setTemplate('catalog/admin/product/list.php');
-    //                 $child->addChild('list', $productList);
-    //                 $layout->toHtml();
-    // }
     public function listAction()
     {
         $layout = $this->getLayout();

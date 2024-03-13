@@ -6,9 +6,9 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
     {
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('header.css')
-            ->addCss('footer.css')
-            ->addCss('1columnMain.css');
+            ->addCss('header.css');
+        // ->addCss('footer.css')
+        // ->addCss('1columnMain.css');
     }
 
     // public function addAction()
@@ -39,5 +39,5 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         $quote = Mage::getSingleton('sales/quote')->updateProduct($updateData);
         $this->setRedirect('cart/checkout/view');
     }
-    
+
 }

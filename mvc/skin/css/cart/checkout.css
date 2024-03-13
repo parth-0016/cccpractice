@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  padding: 30px;
+}
+.left {
+  flex: 1;
+  padding: 20px;
+}
+.right {
+  flex: 1;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="text"],
+input[type="tel"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+input[type="checkbox"] {
+  margin-bottom: 10px;
+}
