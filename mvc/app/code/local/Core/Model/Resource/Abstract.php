@@ -20,6 +20,7 @@ class Core_Model_Resource_Abstract
     public function save(Core_Model_Abstract $product)
     {
         $data = $product->getData();
+        // print_r($data);
         // $id = Mage::getModel('core/request')->getParams('id');
         // print_r($data);
 

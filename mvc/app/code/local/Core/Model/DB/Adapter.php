@@ -59,7 +59,7 @@ class Core_Model_DB_Adapter
     {
         $this->connect();
         $sql = mysqli_query($this->connect, $query);
-        // echo $query;
+        echo $query;
         // print_r($sql);
         // die;
         if ($sql) {

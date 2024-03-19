@@ -1,35 +1,132 @@
-<div class="container">
+<?php
+$itemData = $this->getItemData(); // Assuming this method fetches cart items
+$quoteId = $this->getItemData()->getFirstItem();
+$totalItem = 0;
+$totalQty = 0;
+?>
+
+<div class="checkout-container">
     <div class="left">
-        <div class="card">
-            <h2>Products List</h2>
-            <!-- Placeholder for products list -->
-        </div>
+        <h2>Products in Your Cart</h2>
+        <ul class="product-list">
+            <?php foreach ($itemData->getData() as $item): ?>
+            <img src="<?php echo Mage::getBaseUrl('media/product/') . $this->getProduct($item->getProductId())->getImageLink() ?>"
+                alt="Product 1">
+            <?php
+                $product = $this->getProduct($item->getProductId());
+                $totalItem++;
+                $totalQty += $item->getQty();
+                ?>
+            <li>
+                <span>
+                    <?php echo $product->getName(); ?>
+                </span>
+                <span> - Quantity:
+                    <?php echo $item->getQty(); ?>
+                </span>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+        <p>Total Items:
+            <?php echo $totalItem; ?>
+        </p>
+        <p>Total Quantity:
+            <?php echo $totalQty; ?>
+        </p>
+        <p>Total Price:
+            <?php echo $this->getQuoteData($quoteId->getQuoteId())->getGrandTotal(); ?>
+        </p>
     </div>
     <div class="right">
-        <h2>Billing Information</h2>
-        <label for="billing_address">Address</label>
-        <input type="text" id="billing_address" name="billing_address" required>
-        <label for="billing_city">City</label>
-        <input type="text" id="billing_city" name="billing_city" required>
-        <label for="billing_region">Region</label>
-        <input type="text" id="billing_region" name="billing_region" required>
-        <label for="billing_country">Country</label>
-        <input type="text" id="billing_country" name="billing_country" required>
-        <label for="billing_phone">Phone</label>
-        <input type="tel" id="billing_phone" name="billing_phone" required>
+        <h2>Checkout</h2>
+        <form action="<?php echo Mage::getBaseUrl('sales/quote/save') ?>" method="post">
 
-        <h2>Shipping Information</h2>
-        <input type="checkbox" id="copy_billing" name="copy_billing">
-        <label for="copy_billing">Same as Billing Information</label>
-        <label for="shipping_address">Address</label>
-        <input type="text" id="shipping_address" name="shipping_address" required>
-        <label for="shipping_city">City</label>
-        <input type="text" id="shipping_city" name="shipping_city" required>
-        <label for="shipping_region">Region</label>
-        <input type="text" id="shipping_region" name="shipping_region" required>
-        <label for="shipping_country">Country</label>
-        <input type="text" id="shipping_country" name="shipping_country" required>
-        <label for="shipping_phone">Phone</label>
-        <input type="tel" id="shipping_phone" name="shipping_phone" required>
+            <label for="billing_address">Billing Address:</label>
+            <input type="text" id="billing_address" name="quote_customer[billing_address]" required><br>
+            <label for="billing_city">City:</label>
+            <input type="text" id="billing_city" name="quote_customer[billing_city]" required><br>
+            <label for="billing_region">Region:</label>
+            <input type="text" id="billing_region" name="quote_customer[billing_region]" required><br>
+            <label for="billing_country">Country:</label>
+            <input type="text" id="billing_country" name="quote_customer[billing_country]" required><br>
+            <label for="billing_country">Pin Code:</label>
+            <input type="text" id="pin_code" name="quote_customer[billing_pin_code]" required><br>
+            <label for="billing_phone">Phone:</label>
+            <input type="tel" id="billing_phone" name="quote_customer[billing_phone]" required><br><br>
+
+            <input type="checkbox" id="copy_billing" name="copy_billing">
+            <label for="copy_billing">Same as Billing Information</label><br><br>
+
+            <label for="shipping_address">Shipping Address:</label>
+            <input type="text" id="shipping_address" name="quote_customer[shipping_address]" required><br>
+            <label for="shipping_city">City:</label>
+            <input type="text" id="shipping_city" name="quote_customer[shipping_city]" required><br>
+            <label for="shipping_region">Region:</label>
+            <input type="text" id="shipping_region" name="quote_customer[shipping_region]" required><br>
+            <label for="shipping_country">Country:</label>
+            <input type="text" id="shipping_country" name="quote_customer[shipping_country]" required><br>
+            <label for="pin_code">Pin code</label>
+            <input type="text" id="pin_code" name="quote_customer[shipping_pin_code]" required><br>
+            <label for="shipping_phone">Phone:</label>
+            <input type="tel" id="shipping_phone" name="quote_customer[shipping_phone]" required><br>
+
+            <h2>Shipping Method</h2>
+            <ul>
+                <?php
+                $shippingMethods = [
+                    1 => 'Flat Rate',
+                    2 => 'Free Shipping',
+                    3 => 'Express Shipping'
+                ];
+                foreach ($shippingMethods as $methodCode => $methodName):
+                    ?>
+                <li>
+                    <input type="radio" id="shipping_method_<?php echo $methodCode; ?>"
+                        name="quote_shipping[shipping_method]" value="<?php echo $methodCode; ?>">
+                    <label for="shipping_method_<?php echo $methodCode; ?>">
+                        <?php echo $methodName; ?>
+                    </label>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+
+            <h2>Payment Method</h2>
+            <ul>
+                <?php
+                $paymentMethods = [
+                    1 => 'PayPal Express',
+                    2 => 'Credit Card',
+                    3 => 'Bank Transfer'
+                ];
+                foreach ($paymentMethods as $methodCode => $methodName):
+                    ?>
+                <li>
+                    <input type="radio" id="payment_method_<?php echo $methodCode; ?>"
+                        name="quote_payment[payment_method]" value="<?php echo $methodCode; ?>"
+                        onchange="toggleCardNumberField(this.value);">
+                    <label for="payment_method_<?php echo $methodCode; ?>">
+                        <?php echo $methodName; ?>
+                    </label>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+
+            <div id="card_number_field" style="display: none;">
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="quote_payment[card_number]">
+            </div>
+
+            <script>
+            function toggleCardNumberField(selectedValue) {
+                if (selectedValue == '2') {
+                    document.getElementById('card_number_field').style.display = 'block';
+                } else {
+                    document.getElementById('card_number_field').style.display = 'none';
+                }
+            }
+            </script>
+
+            <input type="submit" value="Place Order">
+        </form>
     </div>
 </div>

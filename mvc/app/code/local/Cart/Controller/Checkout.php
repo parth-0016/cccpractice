@@ -2,33 +2,33 @@
 
 class Cart_Controller_Checkout extends Core_Controller_Front_Action
 {
-    public function viewAction()
+
+    public function init()
     {
-        $layout = $this->getLayout();
-        $layout->getChild('head')
-            ->addCss('header.css')
-            ->addCss('cart/view.css');
+        if (!Mage::getSingleton('core/session')->get('logged_in_customer_id')) {
+            $this->setRedirect('customer/account/login');
+        }
 
-        $child = $layout->getChild('content');
-        $viewCart = $layout->createBlock('cart/cart');
-        $child->addChild('viewCart', $viewCart);
-
-        $layout->toHtml();
+        // $this->setRedirect('cart/checkout/checkout');
     }
 
     public function checkoutAction()
     {
+        // if(Mage::getSingleton('core/session')->get('quote_id')){
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('header.css')
+            // ->addCss('header.css')
             ->addCss('cart/view.css')
             ->addCss('cart/checkout.css');
 
         $child = $layout->getChild('content');
-        $viewCart = $layout->createBlock('cart/checkout');
-        $child->addChild('viewCart', $viewCart);
+        $Checkout = $layout->createBlock('cart/checkout');
+        $child->addChild('viewCart', $Checkout);
 
         $layout->toHtml();
+        // }else{
+        // $this->getRequest()->setRedirect('cart/index/view');
+        // }
     }
 
 }

@@ -1,20 +1,52 @@
-.container {
+.checkout-container {
   display: flex;
-  padding: 30px;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px;
 }
-.left {
-  flex: 1;
-  padding: 20px;
-}
+
+.left,
 .right {
   flex: 1;
+  margin: 0 10px;
   padding: 20px;
-  border-left: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
+
+.left {
+  max-width: 400px;
+}
+
+.right {
+  max-width: 600px;
+}
+
+.product-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-list li {
+  margin-bottom: 10px;
+}
+
+.product-list img {
+  max-width: 50px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
 label {
   display: block;
   margin-bottom: 5px;
 }
+
 input[type="text"],
 input[type="tel"] {
   width: 100%;
@@ -23,6 +55,40 @@ input[type="tel"] {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-input[type="checkbox"] {
-  margin-bottom: 10px;
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+label[for="copy_billing"],
+label[for^="shipping_method_"],
+label[for^="payment_method_"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
 }
