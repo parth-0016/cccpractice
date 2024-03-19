@@ -7,7 +7,6 @@ class Cart_Controller_Index extends Core_Controller_Front_Action
         // if(Mage::getSingleton('core/session')->get('quote_id')){
         $layout = $this->getLayout();
         $layout->getChild('head')
-            ->addCss('header.css')
             ->addCss('cart/view.css');
 
         $child = $layout->getChild('content');

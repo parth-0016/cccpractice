@@ -123,7 +123,7 @@ class Core_Model_Abstract
     }
     public function save()
     {
-        $this->_beforeSave();
+        $this->_beforeSave(); 
         $this->getResource()->save($this); //getResource resource no object apse
         $this->_afterSave();
         return $this;

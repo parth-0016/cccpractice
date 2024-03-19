@@ -12,7 +12,8 @@ class Core_Controller_Front_Action
         $this->init();
     }
 
-    public function init(){
+    public function init()
+    {
         return $this;
     }
 
@@ -20,9 +21,7 @@ class Core_Controller_Front_Action
     {
         if (is_null($this->_layout)) {
             $this->_layout = Mage::getBlock('core/layout');
-
         }
-
         return $this->_layout;
     }
 

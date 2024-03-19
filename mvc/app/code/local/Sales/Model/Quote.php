@@ -45,7 +45,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->addData('grand_total', $grandTotal);
     }
 
-
     public function addProduct($request)
     {
         $this->initQuote();
@@ -156,16 +155,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
 
     public function convertQuoteToOrder()
     {
-        echo "<pre>";
-        print_r($this->getData());
-        if (
-            Mage::getModel('sales/order')
-                ->setData($this->getData())
-        ) {
-            echo "success";
-        } else {
-            echo "fail";
-        }
         return Mage::getModel('sales/order')
             ->setData($this->getData())
             ->removeData('quote_id')
