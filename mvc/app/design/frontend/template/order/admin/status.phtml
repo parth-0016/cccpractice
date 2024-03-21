@@ -1,0 +1,66 @@
+<?php $satusCol = $this->getStatus() ?>
+<form class="centered-form" action="<?php echo $this->getUrl('admin/order_status/save'); ?>" method="post">
+    <div class="row">
+        <input type="hidden" name="order_status[status_id]" value="<?php echo $satusCol->getStatusId() ?>"
+            class="hidden-input">
+    </div>
+    <div class="row">
+        <label for="name" class="form-label">Status : </label>
+        <input type="text" name="order_status[status]" id="name" value="<?php echo $satusCol->getStatus() ?>"
+            class="form-input">
+    </div>
+    <div class="row">
+        <input type="submit" value="Submit" class="form-submit">
+    </div>
+</form>
+
+<?php
+$statusCollection = $this->collection();
+?>
+
+
+<div class="card radius-10">
+    <div class="card-header py-3">
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-6">
+                <h2 class="mb-0">Status List</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive mt-2">
+            <table id="example" class="table align-middle mb-0 table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($statusCollection->getData() as $status): ?>
+                    <tr>
+                        <td>
+                            <?php echo $status->getStatusId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $status->getStatus(); ?>
+                        </td>
+                        <td class="text-center">
+                            <a href="<?php echo Mage::getBaseUrl("admin/order_status/index?id=" . $status->getStatusId()); ?>"
+                                class="btn btn-warning" title="Edit info">Edit</a>
+                        </td>
+                        <td class="text-center">
+                            <a href="<?php echo Mage::getBaseUrl("admin/order_status/delete?id=" . $status->getStatusId()); ?>"
+                                class="btn btn-danger" title="Delete">Delete
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

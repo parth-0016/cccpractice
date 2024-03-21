@@ -36,8 +36,8 @@ $URL = Mage::getBaseUrl("admin/catalog_category");
                         <?php print_r($product->mapStatus()); ?>
                     </td>
                     <td>
-                        <a href="<?php echo $URL; ?>/category?id=<?php print_r($product->getCategoryId()); ?>"
-                            type="button" id="update" class="btn btn-edit"> Update </a>
+                        <a href="<?php echo $URL; ?>/form?id=<?php print_r($product->getCategoryId()); ?>" type="button"
+                            id="update" class="btn btn-edit"> Update </a>
                     </td>
                     <td>
                         <a href="<?php echo $URL; ?>/delete?id=<?php print_r($product->getCategoryId()); ?>"

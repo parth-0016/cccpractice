@@ -11,10 +11,8 @@ class Sales_Model_Order extends Core_Model_Abstract
 
     protected function _beforeSave()
     {
-        $fixedString = 'CCC-';
-
-        $randomNumber = mt_rand(10000, 99999);
-        $orderNumber = $fixedString . $randomNumber;
+        $randomNumber = 70001;
+        $orderNumber = 'Order' . $randomNumber;
         $this->addData('order_number', $orderNumber);
     }
 

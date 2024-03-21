@@ -5,17 +5,13 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
     public function formAction()
     {
         $layout = $this->getLayout();
-        // $layout->getChild('head')
-        //     ->addCss('header.css');
-        // $layout->getChild('head')
-        //     ->addCss('footer.css');
         $layout->getChild('head')
             ->addCss('category/form.css');
 
         $child = $layout->getChild('content');
 
         $categoryForm = $layout->createBlock('catalog/admin_category_form');
-        $child->addChild('category', $categoryForm)->addChild('category/form.css');
+        $child->addChild('category', $categoryForm);
         $layout->toHtml();
     }
 

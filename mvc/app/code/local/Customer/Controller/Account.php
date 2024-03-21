@@ -17,7 +17,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         ) {
             $this->setRedirect('customer/account/login');
         }
-    }
+    } 
     public function loginAction()
     {
         $layout = $this->getLayout();

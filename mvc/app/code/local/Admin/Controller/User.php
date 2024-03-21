@@ -9,9 +9,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
         $layout = $this->getLayout();
 
         $layout->getChild('head')
-            ->addCss('header.css')
-            ->addCss('footer.css')
-            ->addCss('admin/logoin.');
+            ->addCss('admin/login.css');
 
         $child = $layout->getChild('content');
         $login = $layout->createBlock('admin/account_login');

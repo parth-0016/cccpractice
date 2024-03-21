@@ -25,4 +25,12 @@ class Cart_Block_Cart extends Core_Block_Template
     {
         return Mage::getModel('sales/quote')->load($quoteId);
     }
+
+    public function checkCart()
+    {
+        $quoteId = Mage::getSingleton('core/session')->get('quote_id');
+        return Mage::getModel('sales/quote_item')->getCollection()
+            ->addFieldToFilter('quote_id', $quoteId)
+            ->getData();
+    }
 }

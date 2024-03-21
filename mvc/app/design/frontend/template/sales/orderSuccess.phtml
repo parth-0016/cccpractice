@@ -1,0 +1,24 @@
+<?php $orderId = $this->getOrderId();
+$order = $this->getOrder($orderId);
+$payId = $order->getPaymentId();
+$shipId = $order->getShippingId();
+$payment = $this->getPayMethod($payId);
+$shipAdd = $this->getShipAdd($shipId); ?>
+<div class="main-container">
+    <h1 class="main-title">Order Placed Successfully!</h1>
+    <div class="order-details-container">
+        <p class="order-details-item"><span class="order-details-label">Order Number:</span>
+            <?php echo $order->getOrderNumber() ?>
+        </p>
+        <p class="order-details-item"><span class="order-details-label">Order Total:</span> $
+            <?php echo $order->getGrandTotal() ?>
+        </p>
+        <p class="order-details-item"><span class="order-details-label">Payment Method:</span>
+            <?php echo $payment->getPaymentMethod() ?>
+        </p>
+        <p class="order-details-item"><span class="order-details-label">Shipping Method:</span>
+            <?php echo $shipAdd->getShippingMethod() ?>
+        </p>
+    </div>
+    <a href="<?php echo Mage::getBaseUrl('order/order/list'); ?>" class="btn">Your Orders</a>
+</div>

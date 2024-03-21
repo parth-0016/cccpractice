@@ -9,20 +9,65 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->_modelClass = 'sales/quote';
     }
 
+    // public function initQuote()
+    // {
+    //     $quoteId = Mage::getSingleton('core/session')->get('quote_id');
+    //     if (!empty ($quoteId)) {
+    //         $this->load($quoteId);
+    //         // print_r($this);
+    //     }
+    //     if (!$this->getId()) {
+    //         $quote = Mage::getModel('sales/quote')
+    //             ->setData(["tax_percent" => 10, "grand_total" => 0])
+    //             ->save();
+    //         Mage::getSingleton('core/session')->set('quote_id', $quote->getId());
+    //         $quoteId = $quote->getId();
+    //         $this->load($quoteId);
+    //     }
+    // }
+
     public function initQuote()
     {
         $quoteId = Mage::getSingleton('core/session')->get('quote_id');
-        if (!empty ($quoteId)) {
-            $this->load($quoteId);
-            // print_r($this);
-        }
-        if (!$this->getId()) {
+        $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        if (!$quoteId) {
             $quote = Mage::getModel('sales/quote')
-                ->setData(["tax_percent" => 10, "grand_total" => 0])
-                ->save();
-            Mage::getSingleton('core/session')->set('quote_id', $quote->getId());
+                ->setData([
+                    'tax_percent' => 8,
+                    'grand_total' => 0,
+                ]);
+            if (!is_null($this->getQuoteCollection())) {
+                print_r($this->getQuoteCollection());
+                $quoteId = $this->getQuoteCollection()->getQuoteId();
+                $quote->addData('quote_id', $quoteId);
+            }
+            $quote->save();
+            Mage::getSingleton('core/session')
+                ->set('quote_id', $quote->getId());
             $quoteId = $quote->getId();
             $this->load($quoteId);
+        } else {
+            if ($customerId) {
+                $quoteModel = Mage::getModel('sales/quote')->load($quoteId);
+                $quoteModel->addData('customer_id', $customerId)->save();
+                $quoteId = $quoteModel->getId();
+            }
+            $this->load($quoteId);
+        }
+        return $this;
+    }
+
+    public function getQuoteCollection()
+    {
+        $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        if ($customerId) {
+            return Mage::getSingleton('sales/quote')
+                ->getCollection()
+                ->addFieldToFilter('customer_id', $customerId)
+                ->addFieldToFilter('order_id', 0)
+                ->getFirstItem();
+        } else {
+            return null;
         }
     }
 

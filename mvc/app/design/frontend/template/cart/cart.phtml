@@ -1,4 +1,5 @@
 <?php $itemData = $this->getItemData();
+$items = $this->checkCart();
 $quoteId = $this->getItemData()->getFirstItem();
 $totalItem = 0;
 $totalQty = 0;
@@ -6,6 +7,19 @@ $totalQty = 0;
 
 <div class="cart-container">
     <h1>Your Shopping Cart</h1>
+
+    <?php if (empty ($items)): ?>
+    <center>
+        <img src="<?php echo $this->getUrl('media/img/') . 'emptycart.png' ?>" style="width: 300px; height: 250px;"
+            class="header-brand-img light-logo1" alt="logo"><br>
+        Missing Cart items ?
+        <p>Login to see the items you added previously</p>
+        <form action="<?php echo Mage::getBaseUrl('catalog/category/view') ?>">
+            <button type="submit" style="background-color: orange;">Add products</button>
+        </form>
+    </center>
+    <?php else: ?>
+
     <div class="cart-items">
 
         <?php foreach ($itemData->getData() as $item): ?>
@@ -35,7 +49,7 @@ $totalQty = 0;
             </div>
         </div>
         <?php $totalItem++;
-            $totalQty += $item->getQty(); ?>
+                $totalQty += $item->getQty(); ?>
         <?php endforeach; ?>
 
     </div>
@@ -54,4 +68,5 @@ $totalQty = 0;
             <button class="checkout-btn">Checkout</button>
         </form>
     </div>
+    <?php endif; ?>
 </div>

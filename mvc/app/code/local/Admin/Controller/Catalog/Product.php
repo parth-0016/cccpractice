@@ -2,17 +2,10 @@
 
 class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
-    // public function __construct(){
-    //     $form = $this->createBlock('catalog/admin_product');
-    //     $this->addChild('form', $form);
-    // }
     public function formAction()
     {
         $layout = $this->getLayout();
-        // $layout->getChild('head')
-        //     ->addCss('header.css');
-        // $layout->getChild('head')
-        //     ->addCss('footer.css');
+
         $layout->getChild('head')
             ->addCss('product/productForm.css');
 

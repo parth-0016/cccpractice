@@ -1,0 +1,37 @@
+<?php $orders = $this->orderIdd(); ?>
+<div class="orders-container">
+    <?php foreach ($orders as $_orderId) { ?>
+    <div class="order-item">
+        <div class="order-info">
+            <span class="order-id">Order Id:
+                <?php echo $_orderId->getId() ?>
+            </span>
+            <span class="order-no">Order Number:
+                <?php echo $_orderId->getOrderNumber() ?>
+            </span>
+            <span class="order-total">Total: $
+                <?php echo $_orderId->getGrandTotal() ?>
+            </span>
+        </div>
+        <div class="product-details">
+            <?php foreach ($this->items($_orderId->getId()) as $_item) { ?>
+            <div class="product-info">
+                <div class="product-title">
+                    <?php echo $_item->getProductName() ?>
+                </div>
+                <div class="product-image">
+                    <img src="<?php echo Mage::getBaseUrl('media/product/') . $this->product($_item->getProductId())->getImageLink(); ?>"
+                        alt="Product Image">
+                </div>
+                <div>Quantity:
+                    <?php echo $_item->getQty() ?>
+                </div>
+                <div>Price: $
+                    <?php echo $this->product($_item->getProductId())->getPrice(); ?>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+</div>
